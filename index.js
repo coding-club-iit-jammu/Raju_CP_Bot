@@ -7,10 +7,12 @@ bot.once('ready', () => {
 	console.log('Ready!');
 });
 
-bot.login(TOKEN);
-
 bot.on('message', message => {
 	if (message.content === "!ping") {
 		message.channel.send('Pong!');
+	} else if (message.content === "user-info") {
+		message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}`);
 	}
 })
+
+bot.login(TOKEN);
