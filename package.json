@@ -1,0 +1,26 @@
+{
+  "name": "raju_cp_bot",
+  "version": "1.0.0",
+  "description": "Discord bot for Competitive Coding Server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coding-club-iit-jammu/Raju_CP_Bot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "Coding Club IIT Jammu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coding-club-iit-jammu/Raju_CP_Bot/issues"
+  },
+  "homepage": "https://github.com/coding-club-iit-jammu/Raju_CP_Bot#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0"
+  }
+}
