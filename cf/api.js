@@ -18,4 +18,18 @@ module.exports = {
             console.log(error);
         }
     },
+    /**
+     * https://codeforces.com/api/help/methods#contest.list
+     */
+    get_contest: async function() {
+        try {
+            const response = await fetch(API.contest);
+            const json = await response.json();
+            // console.log(json);
+            return json;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
 }
