@@ -31,5 +31,19 @@ module.exports = {
             console.log(error);
         }
     },
-
+    /**
+     * http://codeforces.com/api/help/methods#problemset.problems
+     * @param {array<string>} tags problem tags
+     */
+    get_problem: async function(tags) {
+    const params = tags.join(';');
+    try {
+        const response = await fetch(API.problem + params);
+        const json = await response.json();
+        // console.log(json);
+        return json;
+    } catch (error) {
+        console.log(error);
+    }
+    },
 }
