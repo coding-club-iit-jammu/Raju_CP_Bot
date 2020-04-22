@@ -25,15 +25,22 @@ bot.on('message', message => {
 	}
 
 	const args = message.content.slice(PREFIX.length).split(/ +/);
-	const command = args.shift().toLowerCase();
+	const commandName = args.shift().toLowerCase();
 
-	if (!bot.commands.has(command)) {
+	if (!bot.commands.has(commandName)) {
 		message.channel.send('Invalid command! Type !help to get list of all commands.');
 		return;
 	}
 
-	try {
-		bot.commands.get(command).execute(message, args);
+	const command = bot.commands.get(commandName);
+
+	// for commands that require an argument but not provided
+	if (command.args && !args.length) {
+		return message.channel.send(`You didn't provied any arguments, ${message.author}!`);
+	}
+
+ 	try {
+		command.execute(message, args);
 	} catch (error) {
 		console.log(error);
 		message.reply('There was an error trying to execute that command!');
