@@ -61,6 +61,20 @@ module.exports = {
             return;
         }
 
+        //Sorting The array
+        valid.sort(function(a,b){
+            // Turn your strings into dates, and then subtract them
+            // to get a value that is either negative, positive, or zero.
+            return new Date(a.startTimeSeconds) - new Date(b.startTimeSeconds);
+          });
+        
+        
+        //Debugging
+        // for(const con of valid){
+        //     var TheDate = new Date(con.startTimeSeconds * 1000).toString()
+        //     console.log(TheDate);
+        // }
+    
         let Div1=0, Div2=0, Div3=0;
         for(const con of valid) {
             if(con.name.includes(`Div. 1`) && Div1===1)continue;
