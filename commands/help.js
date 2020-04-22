@@ -4,7 +4,7 @@ module.exports = {
     description: 'List all of my commands or info about a specific command',
     aliases: ['commands'],
     usage: '[command name]',
-    cooldown: 5,
+    cooldown: 1,
     execute(message, args) {
         const data = [];
         const { commands } = message.client;

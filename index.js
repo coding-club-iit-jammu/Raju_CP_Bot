@@ -29,13 +29,13 @@ bot.on('message', message => {
 	const args = message.content.slice(PREFIX.length).split(/ +/);
 	const commandName = args.shift().toLowerCase();
 
-	if (!bot.commands.has(commandName)) {
+	const command = bot.commands.get(commandName)
+		|| bot.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+	if (!command) {
 		message.channel.send('Invalid command! Type !help to get list of all commands.');
 		return;
 	}
-
-	const command = bot.commands.get(commandName);
-
 	// for commands that require an argument but not provided
 	if (command.args && !args.length) {
 		let reply = `You didn't provide any arguments, ${message.author}!`;
