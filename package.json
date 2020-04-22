@@ -21,6 +21,7 @@
   "homepage": "https://github.com/coding-club-iit-jammu/Raju_CP_Bot#readme",
   "dependencies": {
     "discord.js": "^12.2.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.0"
   }
 }
