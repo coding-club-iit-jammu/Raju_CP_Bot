@@ -3,7 +3,7 @@ const fs = require('fs')
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const TOKEN = process.env.TOKEN;
-const PREFIX = "!"
+const PREFIX = "!";
 
 bot.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
