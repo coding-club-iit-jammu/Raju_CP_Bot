@@ -5,7 +5,7 @@ const get_contest = require('../cf/api').get_contest;
  * command usage: retrives contests yet to start & User can filter based on division
  *   
  * usage:
- *   !contest [division]
+ *   !cf-contest [division]
  *    division can be 1, 2 or 3
  */
 
@@ -15,8 +15,8 @@ const get_contest = require('../cf/api').get_contest;
   */
 
 module.exports = {
-    name: 'contest',
-    usage:  'contest [division]',
+    name: 'cf-contest',
+    usage:  '[division]',
     description: 'Retrieve list of yet to start contests filtered by' + '(optional) division number.',
     args: false,
     cooldown: 5,
@@ -51,7 +51,7 @@ module.exports = {
         }
 
         if(!valid.length) {
-            let reply = 'found no contests';
+            let reply = 'Found no contests';
 
             if(div !== undefined) {
                 reply += ` for division ${div}`;
@@ -60,21 +60,13 @@ module.exports = {
             msg.reply(reply);
             return;
         }
-
-        //Sorting The array
-        valid.sort(function(a,b){
+        
+        valid.sort((a, b) => {
             // Turn your strings into dates, and then subtract them
             // to get a value that is either negative, positive, or zero.
             return new Date(a.startTimeSeconds) - new Date(b.startTimeSeconds);
           });
         
-        
-        //Debugging
-        // for(const con of valid){
-        //     var TheDate = new Date(con.startTimeSeconds * 1000).toString()
-        //     console.log(TheDate);
-        // }
-    
         let Div1=0, Div2=0, Div3=0;
         for(const con of valid) {
             if(con.name.includes(`Div. 1`) && Div1===1)continue;
@@ -85,8 +77,7 @@ module.exports = {
                 .setURL(`http://codeforces.com/contests/${con.id}`)
                 .addField('Type', con.type);
     
-            if(con.startTimeSeconds)
-            {
+            if(con.startTimeSeconds) {
                 var TheDate = new Date(con.startTimeSeconds * 1000).toString()
                 embed.addField('Starting', TheDate);
             }
