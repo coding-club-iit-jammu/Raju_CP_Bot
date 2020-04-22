@@ -22,6 +22,7 @@ bot.once('ready', () => {
 });
 
 bot.on('message', message => {
+	
 	if (!message.content.startsWith(PREFIX) || message.author.bot) {
 		return ;
 	}

@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const get_user = require('../cf/api').get_user;
 const RANK_COLOR = require('../cf/constants').RANK_COLOR;
+const ROLES = ['newbie', 'pupil', 'specialist', 'expert'];
 
 module.exports = {
     name: 'set-handle',
@@ -43,7 +44,19 @@ module.exports = {
     
             embed.setColor(color);
 
-            msg.channel.send('', { embed });
+            // remove the current roles associated with the member
+            let member = msg.member;
+            // console.log(msg);
+            for (const ROLE of ROLES) {
+                let role = msg.guild.roles.cache.find(r => r.name === ROLE);
+                if (member.roles.cache.has(role.id)) {
+                    member.roles.remove(role).catch(console.error);
+                }
+            }
+            let newRole = msg.guild.roles.cache.find(r => r.name === user.rank);
+            member.roles.add(newRole).catch(console.error);
+
+            msg.channel.send(`Your role is now updated to ${user.rank}!`, { embed });
         }
     },
 };
