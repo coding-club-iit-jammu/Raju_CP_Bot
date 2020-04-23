@@ -8,6 +8,7 @@ module.exports = {
     usage: '<cf-handle>',
     description: 'Provide role to the user based on the CF-handle!',
     args: true,
+    guildOnly: true,
     cooldown: 5,
     async execute(msg, args) {
         // message.channel.send('Currently working on this feature!');

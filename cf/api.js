@@ -4,7 +4,7 @@ const API = api_module.API;
 
 module.exports = {
     /**
-     * http://codeforces.com/api/help/methods#user.info
+     * https://codeforces.com/api/help/methods#user.info
      * @param {array<string>} handles user handles
      */
     get_user: async function(handles) {
@@ -36,14 +36,17 @@ module.exports = {
      * @param {array<string>} tags problem tags
      */
     get_problem: async function(tags) {
-    const params = tags.join(';');
-    try {
-        const response = await fetch(API.problem + params);
-        const json = await response.json();
-        // console.log(json);
-        return json;
-    } catch (error) {
-        console.log(error);
-    }
+        let params = "";
+        if (tags.length) {
+            params = tags.split(' ').join(';');
+        }
+        try {
+            const response = await fetch(API.problem + params);
+            const json = await response.json();
+            // console.log(json);
+            return json;
+        } catch (error) {
+            console.log(error);
+        }
     },
 }
