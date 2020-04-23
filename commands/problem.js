@@ -25,7 +25,7 @@ function get_random_int(a, b) {
 
 module.exports = {
     name: 'problem',
-    usage: '[tags] [rating]',
+    usage: '[rating] [tags]',
     description: 'Retrieve a random problem with (optional) provided tags and near (within gap of 100) the rating provided (dafault: 1600). Tags must be space separated & Multi-word tags must use underscore (_) as'
     + ' separator. Tag list: http://codeforces.com/blog/entry/14565',
     args: false,
