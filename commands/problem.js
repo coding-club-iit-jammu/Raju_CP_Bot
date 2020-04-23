@@ -4,9 +4,10 @@ const get_problem = require('../cf/api').get_problem;
 /**
  * problem command
  *  - retrive random problem with (optional) provided tags
+ *  - (optional) rating or problem difficulty
  *
  * usage:
- *   !problem [tags] [rating]
+ *   !problem [rating] [tags]
  *
  *   tags - (OPTIONAL) space separated tags. Multi word tags
  *          should be provided as a single word with
@@ -25,7 +26,7 @@ function get_random_int(a, b) {
 module.exports = {
     name: 'problem',
     usage: '[tags] [rating]',
-    description: 'Retrieve a random problem with (optional) provided tags and near the rating provided. Tags must be space separated & Multi-word tags must use underscore (_) as'
+    description: 'Retrieve a random problem with (optional) provided tags and near (within gap of 100) the rating provided (dafault: 1600). Tags must be space separated & Multi-word tags must use underscore (_) as'
     + ' separator. Tag list: http://codeforces.com/blog/entry/14565',
     args: false,
     cooldown: 5,
@@ -33,19 +34,26 @@ module.exports = {
 
         let user_tags = "";
         let user_rating = 1600;
-
+        
+        let first_rating = true;
+        // console.log(args);
+        
         if (args.length >= 1) {
-            user_tags = args[0].split('_').join(' ');
-            console.log(user_tags);
-        } 
-        if (args.length >= 2) {
-            user_rating = Number.parseInt(args[1]);
+            user_rating = Number.parseInt(args[0]);
             if (Number.isNaN(user_rating) || user_rating <= 1000) {
-                msg.reply(`${args[1]} is not a valid division number!`);
-                return;
+                // msg.reply(`${args[1]} is not a valid division number!`);
+                // return;
+                first_rating = false;
+                user_rating = 1600;
+            } else {
+                args = args.splice(1);
             }
         }
-
+        if (!first_rating || args.length >= 1) {
+            user_tags = args.join(';').split('_').join(' ');
+            // console.log(user_tags);
+        }
+        
         let result;
         try {
             let body  = await get_problem(user_tags);
@@ -63,17 +71,17 @@ module.exports = {
             throw 'An error occured while processing the request.';
         }
 
-        if(!result.problems.length) {
-            msg.reply('Found no problems with the specified tags.');
-            return;
-        }
-
         // filter problems based on user_rating if specified or 1600 default
         const valid = [];
         for(const r of result.problems) {
             if (Math.abs(r.rating - user_rating) <= 100) {
                 valid.push(r);
             }
+        }
+
+        if(!valid.length) {
+            msg.reply('Found no problems with the specified tags.');
+            return;
         }
 
         // get the problem index
@@ -118,5 +126,6 @@ module.exports = {
             embed.setColor(color);
         }
         msg.channel.send('', { embed });
+        
     },
 };

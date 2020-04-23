@@ -36,12 +36,8 @@ module.exports = {
      * @param {array<string>} tags problem tags
      */
     get_problem: async function(tags) {
-        let params = "";
-        if (tags.length) {
-            params = tags.split(' ').join(';');
-        }
         try {
-            const response = await fetch(API.problem + params);
+            const response = await fetch(API.problem + tags);
             const json = await response.json();
             // console.log(json);
             return json;
