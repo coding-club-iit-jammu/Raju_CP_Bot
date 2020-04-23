@@ -32,7 +32,7 @@ module.exports = {
         }
     },
     /**
-     * http://codeforces.com/api/help/methods#problemset.problems
+     * https://codeforces.com/api/help/methods#problemset.problems
      * @param {array<string>} tags problem tags
      */
     get_problem: async function(tags) {

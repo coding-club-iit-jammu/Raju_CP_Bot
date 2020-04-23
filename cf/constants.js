@@ -1,7 +1,7 @@
 module.exports =  {
     API: {
         user: 'http://codeforces.com/api/user.info?handles=',
-        problem: 'http://codeforces.com/api/problemset.problems?tags=',
+        problem: 'https://codeforces.com/api/problemset.problems?tags=',
         contest: 'https://codeforces.com/api/contest.list?gym=false',
     },
     RANK_COLOR: {
