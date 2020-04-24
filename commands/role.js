@@ -22,6 +22,11 @@ module.exports = {
             let body = await get_user(args);
             // console.log(body);
             users = body.result;
+            // console.log(body);
+            if (body.status === 'FAILED') {
+                msg.reply(body.comment);
+                return;
+            }
         } catch (err) {
             if(err.status && err.status === 400) {
                 // bad request, no such user
