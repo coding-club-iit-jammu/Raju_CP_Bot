@@ -14,6 +14,22 @@ const get_contest = require('../cf/api').get_contest;
   * and some additional contest
   */
 
+function calcTime(time, city, offset) {
+    // create Date object for current location
+    d = new Date();
+
+    // convert to msec
+    // add local time zone offset 
+    // get UTC time in msec
+    utc = time + (d.getTimezoneOffset() * 60000);
+
+    // create new Date object for different city
+    // using supplied offset
+    nd = new Date(utc + (3600000*offset));
+
+    // return time as a string
+    return "The local time in " + city + " is " + nd.toLocaleString();
+}
 module.exports = {
     name: 'cf-contest',
     usage:  '[division]',
@@ -78,9 +94,7 @@ module.exports = {
                 .addField('Type', con.type);
     
             if(con.startTimeSeconds) {
-                // var d = new Date();
-                var shift = -330; // IST
-                var TheDate = new Date(con.startTimeSeconds * 1000 + shift).toString()
+                var TheDate = calcTime(con.startTimeSeconds * 1000, "India", '+5.5');
                 embed.addField('Starting', TheDate);
             }
             if(con.preparedBy) embed.addField('Author', con.preparedBy);
