@@ -78,9 +78,9 @@ module.exports = {
                 .addField('Type', con.type);
     
             if(con.startTimeSeconds) {
-                var d = new Date();
-                var n = d.getTimezoneOffset();
-                var TheDate = new Date(con.startTimeSeconds * 1000 + n).toString()
+                // var d = new Date();
+                var shift = -330; // IST
+                var TheDate = new Date(con.startTimeSeconds * 1000 + shift).toString()
                 embed.addField('Starting', TheDate);
             }
             if(con.preparedBy) embed.addField('Author', con.preparedBy);
