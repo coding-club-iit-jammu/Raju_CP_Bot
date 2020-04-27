@@ -3,6 +3,7 @@ module.exports =  {
         user: 'http://codeforces.com/api/user.info?handles=',
         problem: 'https://codeforces.com/api/problemset.problems?tags=',
         contest: 'https://codeforces.com/api/contest.list?gym=false',
+        user_status: 'https://codeforces.com/api/user.status?handle=',
     },
     RANK_COLOR: {
         newbie: [128, 128, 128],

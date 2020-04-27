@@ -2,7 +2,28 @@ const fetch = require("node-fetch");
 const api_module = require('./constants');
 const API = api_module.API;
 
+function timeout(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 module.exports = {
+    /**
+     * https://codeforces.com/apiHelp/methods#user.status
+     * @param {handle, from, count, tout}  
+     */
+    get_user_status: async function(handle, from, count, tout) {
+        // perform fetch only after timout ms
+        await timeout(tout);
+        try {
+            const response = await fetch(API.user_status + handle + "&from=" + from 
+                                    + "&count=" + count);
+            const json = response.json();
+            return json;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     /**
      * https://codeforces.com/api/help/methods#user.info
      * @param {array<string>} handles user handles

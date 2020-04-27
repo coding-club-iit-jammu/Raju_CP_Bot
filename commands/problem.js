@@ -126,6 +126,8 @@ module.exports = {
             embed.setColor(color);
         }
         msg.channel.send('', { embed });
-        
+        console.log(cid);
+        console.log(idx);
+        return [cid, idx];
     },
 };
