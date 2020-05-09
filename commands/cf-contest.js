@@ -6,7 +6,7 @@ const get_contest = require('../cf/api').get_contest;
  *   
  * usage:
  *   !cf-contest [division]
- *    division can be 1, 2 or 3
+ *    division can be 1, 2, 3 or 4
  */
 
  /* Displays the latest upcoming contest of the provided division
@@ -42,7 +42,7 @@ module.exports = {
         if(args.length) {
             div = Number.parseInt(args[0]);
     
-            if(Number.isNaN(div) || div < 0 || div > 3) {
+            if(Number.isNaN(div) || div < 0 || div > 4) {
                 msg.reply(`${args[0]} is not a valid division number!`);
                 return;
             }
