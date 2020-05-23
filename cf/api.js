@@ -52,6 +52,7 @@ module.exports = {
             console.log(error);
         }
     },
+
     /**
      * https://codeforces.com/api/help/methods#problemset.problems
      * @param {array<string>} tags problem tags
@@ -79,4 +80,5 @@ module.exports = {
             console.log(error);
         }
     },
+
 }
