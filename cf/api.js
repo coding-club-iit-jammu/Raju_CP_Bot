@@ -66,4 +66,17 @@ module.exports = {
             console.log(error);
         }
     },
+    /**
+    * https://leetcode.com/api/problems/algorithms/
+    */
+    get_problem_leetcode: async function() {
+        try {
+            const response = await fetch(API.leetcode);
+            const json = await response.json();
+            // console.log(json);
+            return json;
+        } catch (error) {
+            console.log(error);
+        }
+    },
 }

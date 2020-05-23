@@ -4,6 +4,7 @@ module.exports =  {
         problem: 'https://codeforces.com/api/problemset.problems?tags=',
         contest: 'https://codeforces.com/api/contest.list?gym=false',
         user_status: 'https://codeforces.com/api/user.status?handle=',
+        leetcode: 'https://leetcode.com/api/problems/algorithms/',
     },
     RANK_COLOR: {
         newbie: [128, 128, 128],
