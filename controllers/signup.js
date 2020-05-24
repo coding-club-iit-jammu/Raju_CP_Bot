@@ -20,5 +20,5 @@ exports.createUser = async (name, discordId, cfHandle) =>{
         let msg = (error.message) ? error.message : "Error occured.";
         return "Error occurred.";
     })
-    return "User Added SUccessfully.";
+    return "User Added Successfully.";
 }
