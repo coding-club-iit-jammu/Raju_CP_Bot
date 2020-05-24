@@ -2,6 +2,7 @@ require('dotenv').config();
 const fs = require('fs')
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+const mongoose = require('mongoose');
 const TOKEN = process.env.TOKEN;
 const PREFIX = "!";
 
@@ -74,3 +75,19 @@ bot.on('message', message => {
 })
 
 bot.login(TOKEN);
+
+
+// connect with mongoose
+mongoose.connect(`mongodb+srv://${process.env.NAME}:${process.env.PASSWORD}@rajucp-xph1k.mongodb.net/CodingBot?retryWrites=true&w=majority`,
+{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+}, (err) => {
+	if(err) {
+		console.log(err);
+		return;
+	};
+	console.log("Connected");
+});
