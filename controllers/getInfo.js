@@ -7,3 +7,16 @@ exports.getUser = async (discordId) =>{
     }
     return "You do not exist in our records! Please use the command !user-add.";
 }
+
+exports.getAllUsers = async () => {
+    let users = await User.find();
+    let list_of_users = [];
+    for (const user of users) {
+        let cur_user = {
+            'name': user.name,
+            'handle': user.cfHandle
+        }
+        list_of_users.push(cur_user);
+    }
+    return list_of_users;
+}

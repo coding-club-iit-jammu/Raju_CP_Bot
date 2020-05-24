@@ -53,7 +53,7 @@ module.exports = {
         embed.setColor(color);
 
         // send a random problem to user and ask for a submission in 1 minute
-        msg.channel.send("Please make a submission that results in Compilation error for the following problem within 1 minute.");
+        msg.channel.send("Please make a submission that results in Compilation error for the following problem within 3 minutes.");
         let problem_details;
         try {
             problem_details = await problem.execute(msg, "");
@@ -73,9 +73,9 @@ module.exports = {
 
         let submissions;
         try {
-            // wait for 60000 ms to call the get_user_status function
+            // wait for 1800000 ms to call the get_user_status function
             // setTimeout(async () => {
-            let body = await get_user_status(user.handle, 1, 10, 60000);
+            let body = await get_user_status(user.handle, 1, 10, 180000);
             submissions = body.result;
             // }, 60000);
         } catch (err) {

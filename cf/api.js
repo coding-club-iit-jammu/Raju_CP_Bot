@@ -17,7 +17,21 @@ module.exports = {
         try {
             const response = await fetch(API.user_status + handle + "&from=" + from 
                                     + "&count=" + count);
-            const json = response.json();
+            const json = await response.json();
+            return json;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
+    /**
+     * https://codeforces.com/apiHelp/methods#user.rating
+     * @param {handle, from, count, tout}  
+     */
+    get_user_rating: async function(handle) {
+        try {
+            const response = await fetch(API.user_rating + handle);
+            const json = await response.json();
             return json;
         } catch (error) {
             console.log(error);
