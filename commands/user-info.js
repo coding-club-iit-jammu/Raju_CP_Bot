@@ -1,7 +1,15 @@
+const getInfo = require('../controllers/getInfo');
+
 module.exports = {
     name: 'user-info',
-    description: 'Gets the username!',
-    execute(message, args) {
-        message.channel.send(`Your username: ${message.author.username}`);
+    description: 'Gets the CF username associated with the user!',
+    async execute(message, args) {
+        const id = message.author.id;
+        let res = await getInfo.getUser(id);
+        if (res._id) {
+            message.reply(`Your CF handle is ${res.cfHandle}!`);
+        } else {
+            message.reply(res);
+        }
     },
 };

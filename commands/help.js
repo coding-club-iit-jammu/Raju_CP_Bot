@@ -13,6 +13,8 @@ module.exports = {
             data.push('Here\'s a list of all my commands:');
             data.push(commands.map(command => command.name).join(', '));
             data.push(`\nYou can send \`${PREFIX}help [command name]\` to get info on a specific command!`);
+            message.channel.send(data, { split: true });
+            /*
             return message.author.send(data, { split: true })
                 .then( () => {
                     if (message.channel.type === 'dm') return;
@@ -22,6 +24,8 @@ module.exports = {
                     console.error(`Could not send help DM to ${message.author.tag}.\n`, error);
                     message.reply('It seems like I can\'t DM you! Do you have DMs enabled?');
                 })
+            */
+           return;
         }
         const name = args[0].toLowerCase();
         const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));

@@ -1,8 +1,11 @@
 module.exports =  {
     API: {
         user: 'http://codeforces.com/api/user.info?handles=',
-        problem: 'http://codeforces.com/api/problemset.problems?tags=',
+        problem: 'https://codeforces.com/api/problemset.problems?tags=',
         contest: 'https://codeforces.com/api/contest.list?gym=false',
+        user_status: 'https://codeforces.com/api/user.status?handle=',
+        user_rating: 'https://codeforces.com/api/user.rating?handle=',
+        leetcode: 'https://leetcode.com/api/problems/algorithms/',
     },
     RANK_COLOR: {
         newbie: [128, 128, 128],
