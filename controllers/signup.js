@@ -1,5 +1,10 @@
 const User = require('../models/user');
 
+exports.findUser = async (discordId) => {
+    let check = await User.findOne({discordId: discordId});
+    return check;
+}
+
 exports.createUser = async (name, discordId, cfHandle) =>{
     let check = await User.findOne({discordId:discordId});
     if(check){
