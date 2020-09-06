@@ -1,4 +1,5 @@
 const signup = require('../controllers/signup');
+const set_handle = require('./role')
 
 module.exports = {
     name: 'user-add',
@@ -18,8 +19,19 @@ module.exports = {
         } else {
             name = args.slice(1, args.length - 1).join(" ");
         }
-        
-        let res = await signup.createUser(name, id, handle);
-        message.channel.send(res);
+
+        let already_exists = await signup.findUser(id);
+        if (already_exists) {
+            message.channel.send("User already exists!");
+            return;
+        }
+        // start the verification of the handle
+        let handle_set_res = await set_handle.execute(message, [handle]);
+        if (handle_set_res == -1) {
+            message.channel.send("Authentication failed!!");
+        } else {
+            let res = await signup.createUser(name, id, handle);
+            message.channel.send(res);
+        }
     },
 };

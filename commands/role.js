@@ -18,7 +18,6 @@ module.exports = {
             msg.reply('no more than 1 handle accepted.');
             return;
         }
-    
         let users;
         try {
             let body = await get_user(args);
@@ -27,13 +26,13 @@ module.exports = {
             // console.log(body);
             if (body.status === 'FAILED') {
                 msg.reply(body.comment);
-                return;
+                return -1;
             }
         } catch (err) {
             if(err.status && err.status === 400) {
                 // bad request, no such user
                 msg.reply(err.body.comment);
-                return;
+                return -1;
             }
             console.error(err);
             throw 'An error occured while processing the request!';
@@ -62,7 +61,7 @@ module.exports = {
             if(err.status && err.status === 400) {
                 // bad request, no such user
                 msg.reply(err.body.comment);
-                return;
+                return -1;
             }
             console.log(error);
             throw 'An error occured while fetching a problem for verification!';
@@ -82,7 +81,7 @@ module.exports = {
             if(err.status && err.status === 400) {
                 // bad request, no such user
                 msg.reply(err.body.comment);
-                return;
+                return -1;
             }
             console.error(err);
             throw 'An error occured while processing the request!';
@@ -108,9 +107,10 @@ module.exports = {
             member.roles.add(newRole).catch(console.error);
 
             msg.channel.send(`Your role is now updated to ${user.rank}!`, { embed });
+            return 1;
         } else {
             msg.reply("Authentication failed!!");
+            return -1;
         }
-        
     },
 };
