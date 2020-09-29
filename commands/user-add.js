@@ -4,7 +4,7 @@ const set_handle = require('./role')
 module.exports = {
     name: 'user-add',
     usage: '[cf-handle] [name] [id]',
-    description: 'Add the user to database! Both arguments cf-handle and name required. ID is optional, it will be fetched automatically.',
+    description: 'Add the user to database. Both arguments cf-handle and name required. ID is optional, it will be fetched automatically.',
     args: true,
     async execute(message, args) {
         if (args.length < 2) {
