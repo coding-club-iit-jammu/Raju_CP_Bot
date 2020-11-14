@@ -27,8 +27,8 @@ exports.createUser = async (name, discordId, cfHandle) => {
       }
     })
     .catch((error) => {
-      const error = error.message ? error.message : errorMsg;
-      return error;
+      const errorMsgFinal = error.message ? error.message : errorMsg;
+      return errorMsgFinal;
     });
   return successMsg;
 };

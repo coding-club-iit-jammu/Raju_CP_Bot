@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const getUser = require("../lib/cf/api").getUser;
 const getUserStatus = require("../lib/cf/api").getUserStatus;
 const problem = require("./problem");
-const RANK_COLOR = require("../cf/constants").RANK_COLOR;
+const RANK_COLOR = require("../lib/cf/constants").RANK_COLOR;
 const ROLES = ["newbie", "pupil", "specialist", "expert"];
 
 module.exports = {

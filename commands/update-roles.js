@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const getUser = require("../lib/cf/api").getUser;
-const RANK_COLOR = require("../cf/constants").RANK_COLOR;
+const RANK_COLOR = require("../lib/cf/constants").RANK_COLOR;
 const ROLES = ["newbie", "pupil", "specialist", "expert"];
 const getInfo = require("../controllers/getInfo");
 
@@ -12,6 +12,10 @@ module.exports = {
   guildOnly: true,
   cooldown: 5,
   async execute(msg, args) {
+    msg.reply(
+      "This command is not yet functional, if you want to build it, " +
+        "you're welcome"
+    );
     // TODO:
     // if (args.length >= 1) {
     //     msg.reply('No arguments accepted');

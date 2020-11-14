@@ -22,7 +22,7 @@ module.exports = {
   description:
     "Retrieve a random problem with (optional) difficulty and " +
     "returns the problem link",
-  args: false,
+  args: true,
   cooldown: 5,
   async execute(msg, args) {
     let problemDifficulty = getRandomInt(1, 3);
@@ -35,7 +35,8 @@ module.exports = {
     let statStatusPairs;
     try {
       const body = await getLeetcodeProblems();
-      statStatusPairs = body.statStatusPairs;
+      console.log(body);
+      statStatusPairs = body.stat_status_pairs;
     } catch (err) {
       if (err.status && err.status === 400) {
         msg.reply(
